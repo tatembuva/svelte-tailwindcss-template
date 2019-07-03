@@ -40,6 +40,9 @@ var app = (function () {
     function text(data) {
         return document.createTextNode(data);
     }
+    function space() {
+        return text(' ');
+    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
@@ -249,16 +252,23 @@ var app = (function () {
     const file = "src/App.svelte";
 
     function create_fragment(ctx) {
-    	var h1, t0, t1, t2;
+    	var div, h1, t0, t1, t2, t3, h2;
 
     	return {
     		c: function create() {
+    			div = element("div");
     			h1 = element("h1");
     			t0 = text("Hello ");
     			t1 = text(ctx.name);
     			t2 = text("!");
-    			attr(h1, "class", "svelte-i7qo5m");
-    			add_location(h1, file, 10, 0, 82);
+    			t3 = space();
+    			h2 = element("h2");
+    			h2.textContent = "One two three four";
+    			attr(h1, "class", "text-purple-200 text-lg");
+    			add_location(h1, file, 6, 0, 80);
+    			add_location(h2, file, 7, 0, 135);
+    			attr(div, "class", "antialiased");
+    			add_location(div, file, 5, 0, 54);
     		},
 
     		l: function claim(nodes) {
@@ -266,10 +276,13 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, h1, anchor);
+    			insert(target, div, anchor);
+    			append(div, h1);
     			append(h1, t0);
     			append(h1, t1);
     			append(h1, t2);
+    			append(div, t3);
+    			append(div, h2);
     		},
 
     		p: function update(changed, ctx) {
@@ -283,7 +296,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(h1);
+    				detach(div);
     			}
     		}
     	};

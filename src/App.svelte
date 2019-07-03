@@ -2,10 +2,8 @@
 	export let name;
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
+<style></style>
+<div class="antialiased">
+<h1 class="text-purple-200 text-lg">Hello {name}!</h1>
+<h2> One two three four</h2>
+</div>
